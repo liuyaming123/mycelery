@@ -24,16 +24,9 @@ cel = Celery('tasks',
 
 启动定时任务时也要启动worker
 celery -A app worker --loglevel=info
-celery -A app beat --loglevel=info
+celery -A timed beat --loglevel=info
+## 启动定时任务时， -A 后边的参数为配置定时任务所在的文件的文件名 即cel.conf.beat_schedule所在的文件名
 '''
-
-
-# # 使用装饰器 加载任务
-# @cel.task()
-# def send_sms(name):
-#     print("send_sms start")
-#     time.sleep(2)
-#     return "发送成功%s" % name
 
 
 
