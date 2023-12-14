@@ -1,6 +1,5 @@
 from celery import Celery
 from celery.schedules import crontab
-import time
 
 
 cel = Celery('tasks',
@@ -9,8 +8,10 @@ cel = Celery('tasks',
              task_default_queue = 'custom_queue',  # 自定义队列名称
              broker_connection_retry_on_startup = True,
              timezone='Asia/Shanghai',
-             include=['task_1', 'task_2', ],
+             include=['task_1', 'task_2', 'task_3', ],
         )
+
+
 '''
 启动worker: celery -A app worker --loglevel=info
 -A 参数: 表示Celery对象所在的py文件的文件名
@@ -26,6 +27,11 @@ cel = Celery('tasks',
 celery -A app worker --loglevel=info
 celery -A timed beat --loglevel=info
 ## 启动定时任务时， -A 后边的参数为配置定时任务所在的文件的文件名 即cel.conf.beat_schedule所在的文件名
+
+定时任务后台启动加 --detach
+celery -A timed beat --loglevel=info  --detach
+worker后台启动加 --detach
+celery -A app worker --loglevel=info --detach
 '''
 
 
