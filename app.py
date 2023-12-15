@@ -32,6 +32,9 @@ celery -A timed beat --loglevel=info
 celery -A timed beat --loglevel=info  --detach
 worker后台启动加 --detach
 celery -A app worker --loglevel=info --detach
+
+启动celery监控
+celery -A app flower
 '''
 
 
